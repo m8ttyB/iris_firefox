@@ -8,10 +8,12 @@
 #!/usr/bin/env bash
 
 set -ve
-# This allows packages to be installed without human interaction
-# export DEBIAN_FRONTEND=noninteractive
 
+# Set up a virtual display since we don't have an xdisplay
+. $HOME/scripts/xvfb.sh
+start_xvfb '1920x1080x24+32' 0
 
-python3.7 -m pip install pipenv
-python3.7 -m pip install psutil
-python3.7 -m pip install zstandard
+# Re-set `+e` after start_xvfb changes it
+set +e
+
+cd /app && pipenv install

@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  iris-debian10:
+  iris:
     container_name: iris_firefox
     # env_file:
     #   - docker/config/local_dev.env
@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/Dockerfile
-    # command: ["pipenv install"]
+    # command: ["sh", "-c", "pipenv install"]
     volumes:
       - .:/app
     ports:
