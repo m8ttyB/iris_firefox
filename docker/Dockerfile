@@ -25,7 +25,6 @@ RUN cd /tmp \
   && ./configure && make && make install
 
 # Install Tesseract
-# RUN cd /iris-tmp \
 RUN cd /tmp \
   && wget https://github.com/tesseract-ocr/tesseract/archive/4.0.0.tar.gz \
   && tar xopf 4.0.0.tar.gz \
@@ -38,15 +37,14 @@ RUN cd /tmp \
   && ldconfig
 
 # Install tessdata
-RUN cd /iris-tmp \
-  && wget https://github.com/tesseract-ocr/tessdata/archive/4.0.0.zip \
-  && unzip 4.0.0.zip \
-  && cd tessdata-4.0.0 \
-  && ls /usr/local/share/tessdata/ \
-  && mv ./* /usr/local/share/tessdata/
+# RUN cd /tmp \
+#  && wget https://github.com/tesseract-ocr/tessdata/archive/4.0.0.zip \
+#  && unzip 4.0.0.zip \
+#  && cd tessdata-4.0.0 \
+#  && ls /usr/local/share/tessdata/ \
+#  && mv ./* /usr/local/share/tessdata/
 
 # Clean up
-# RUN cd / && rm -rf /iris-tmp && rm -rf ~/.ccache \
 RUN cd / && rm -rf /tmp/* && rm -rf ~/.ccache \
   && ls ~/.cache && rm -rf ~/.npm \
   && apt-get clean && apt-get autoclean
