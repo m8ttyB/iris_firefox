@@ -7,6 +7,8 @@
 # testing suite requires.
 #!/usr/bin/env bash
 
+export DISPLAY=:0
+apt install fluxbox -y
 set -ve
 
 # Set up a virtual display since we don't have an xdisplay
@@ -16,4 +18,10 @@ start_xvfb '1920x1080x24+32' 0
 # Re-set `+e` after start_xvfb changes it
 set +e
 
-cd /app && pipenv install
+# Start fluxbox
+fluxbox &
+
+#Take a screenhot
+gnome-screenshot --file=screenshot.png
+
+# cd /app && pipenv install
